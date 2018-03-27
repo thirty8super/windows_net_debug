@@ -1,0 +1,11 @@
+{
+  "WIN_DUMMY": {
+    "defaultAggregate": "AVG",
+    "defaultResolutionMS": 1000,
+    "description": "Placeholder for a metrics",
+    "displayName": "Placeholder for a metrics",
+    "displayNameShort": "Win Placeholder",
+    "isDisabled": 0,
+    "unit": "percent"
+  }
+}

@@ -1,0 +1,4 @@
+{
+    "source" : "localhost",
+    "pollInterval":5000
+}
