@@ -1,19 +1,24 @@
-
-$source = $env:computername
+$hour = 0
+$min = 0
 
 while(1) {
-	Get-NetAdapter *>> sample.txt
-	Get-NetIPConfiguration *>> sample.txt
-	Test-NetConnection www.google.com *>> sample.txt
-	Test-NetConnection api.truesight.bmc.com *>> sample.txt
 
-	$message = Get-Content sample.txt -raw
+	if ($hour -eq 24) {
+		$hour = 0
+	}
 
-	..\..\truesight-utils.exe -t "Network Sample on $env:computername" -s info -m $message
+	if ($min -eq 60) {
+		$min = 0
+	}
 
-	# Clean the file
-	rm sample.txt
+	Get-Date *> sample-$hour-$min.txt
+	Get-NetAdapter *>> sample-$hour-$min.txt
+	Get-NetIPConfiguration *>> sample-$hour-$min.txt
+	Test-NetConnection www.google.com *>> sample-$hour-$min.txt
+	Test-NetConnection api.truesight.bmc.com *>> sample-$hour-$min.txt
 
+	$hour = $hour + 1
+	$min = $min + 15
 	# Sleep for 15 mins
 	Start-Sleep -s 900
 }
