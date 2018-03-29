@@ -8,6 +8,7 @@ while(1) {
 	}
 
 	if ($min -eq 60) {
+		$hour = $hour + 1
 		$min = 0
 	}
 
@@ -17,8 +18,8 @@ while(1) {
 	Test-NetConnection www.google.com *>> sample-$hour-$min.txt
 	Test-NetConnection api.truesight.bmc.com *>> sample-$hour-$min.txt
 
-	$hour = $hour + 1
 	$min = $min + 15
+
 	# Sleep for 15 mins
 	Start-Sleep -s 900
 }
