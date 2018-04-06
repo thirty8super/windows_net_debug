@@ -20,8 +20,8 @@ while(1) {
 	Test-NetConnection www.google.com | Out-File -Append sample-$hour-$min.txt
 	Test-NetConnection api.truesight.bmc.com | Out-File -Append sample-$hour-$min.txt
 	Test-NetConnection status.truesight.bmc.com | Out-File -Append sample-$hour-$min.txt
-	iwr -Method HEAD https://api.truesight.bmc.com > api-$hour-$min.txt
-	iwr -Method HEAD https://help.truesight.bmc.com > help-$hour-$min.txt
+	iwr -Method HEAD -UseBasicParsing https://api.truesight.bmc.com > api-$hour-$min.txt
+	iwr -Method HEAD -UseBasicParsing https://help.truesight.bmc.com > help-$hour-$min.txt
 
 	$min = $min + 15
 
