@@ -14,13 +14,13 @@ while(1) {
 		$min = 0
 	}
 
-	Get-Date -Out-File  sample-$hour-$min.txt
-	Get-NetAdapter -Out-File -Append sample-$hour-$min.txt
-	Get-NetIPConfiguration -Out-File -Append sample-$hour-$min.txt
-	Test-NetConnection www.google.com -Out-File -Append sample-$hour-$min.txt
-	Test-NetConnection api.truesight.bmc.com -Out-File -Append sample-$hour-$min.txt
-	iwr -Method HEAD https://api.truesight.bmc.com -Out-File -Append sample-$hour-$min.txt
-	iwr -Method HEAD https://help.truesight.bmc.com -Out-File -Append sample-$hour-$min.txt
+	Get-Date | Out-File  sample-$hour-$min.txt
+	Get-NetAdapter | Out-File -Append sample-$hour-$min.txt
+	Get-NetIPConfiguration | Out-File -Append sample-$hour-$min.txt
+	Test-NetConnection www.google.com | Out-File -Append sample-$hour-$min.txt
+	Test-NetConnection api.truesight.bmc.com | Out-File -Append sample-$hour-$min.txt
+	iwr -Method HEAD https://api.truesight.bmc.com | Out-File -Append sample-$hour-$min.txt
+	iwr -Method HEAD https://help.truesight.bmc.com | Out-File -Append sample-$hour-$min.txt
 
 	$min = $min + 15
 
