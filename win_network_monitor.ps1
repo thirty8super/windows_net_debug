@@ -7,6 +7,13 @@ $bmc_failures = 0
 
 while(1) {
 
+	if ($hour -eq 12 -Or $hour -eq 24) {
+		..\..\truesight_utils.exe send_event -t "BMC http failures - $bmc_failures" -s info
+		..\..\truesight_utils.exe send_event -t "Test http failures - $google_failures" -s info
+		$google_failures = 0
+		$bmc_failures = 0
+	}
+
 	if ($hour -eq 24) {
 		$hour = 0
 	}
@@ -14,13 +21,6 @@ while(1) {
 	if ($min -eq 60) {
 		$hour = $hour + 1
 		$min = 0
-	}
-
-	if ($hour -eq 12) {
-		..\..\truesight_utils.exe send_event -t "BMC http failures - $bmc_failures" -s info
-		..\..\truesight_utils.exe send_event -t "Test http failures - $google_failures" -s info
-		$google_failures = 0
-		$bmc_failures = 0
 	}
 
 	Get-Date | Out-File  sample-$hour-$min.txt
