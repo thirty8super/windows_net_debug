@@ -8,6 +8,8 @@ $bmc_failures = 0
 
 while(1) {
 
+	netsh winhttp show proxy
+
 	if ($hour -eq 12 -Or $hour -eq 24) {
 		..\..\truesight_utils.exe send_event -t "BMC http failures - $bmc_failures" -s info
 		..\..\truesight_utils.exe send_event -t "Test https failures - $googles_failures" -s info
