@@ -1,6 +1,6 @@
 {
     "name" : "Network Monitor",
-    "version": "0.12",
+    "version": "0.13",
     "metrics" : ["WIN_DUMMY"],
     "command" : "powershell -NoLogo -NonInteractive -Command Set-ExecutionPolicy Unrestricted; .\\win_network_monitor.ps1"
 }

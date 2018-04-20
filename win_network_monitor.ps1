@@ -2,6 +2,7 @@ $PSDefaultParameterValues['Out-File:Encoding'] = 'utf8'
 
 $hour = 0
 $min = 0
+$googles_failures = 0
 $google_failures = 0
 $bmc_failures = 0
 
@@ -9,7 +10,9 @@ while(1) {
 
 	if ($hour -eq 12 -Or $hour -eq 24) {
 		..\..\truesight_utils.exe send_event -t "BMC http failures - $bmc_failures" -s info
+		..\..\truesight_utils.exe send_event -t "Test https failures - $googles_failures" -s info
 		..\..\truesight_utils.exe send_event -t "Test http failures - $google_failures" -s info
+		$googles_failures = 0
 		$google_failures = 0
 		$bmc_failures = 0
 	}
@@ -33,7 +36,11 @@ while(1) {
 	if (-not $?) {
 		$bmc_failures = $bmc_failures + 1
 	}
-	iwr -Method HEAD -UseBasicParsing https://www.google.com > google-$hour-$min.txt
+	iwr -Method HEAD -UseBasicParsing https://www.google.com > googles-$hour-$min.txt
+	if (-not $?) {
+		$googles_failures = $googles_failures + 1
+	}
+	iwr -Method HEAD -UseBasicParsing http://www.google.com > google-$hour-$min.txt
 	if (-not $?) {
 		$google_failures = $google_failures + 1
 	}
